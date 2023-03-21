@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Animal.Concrete;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,7 +16,8 @@ namespace Animal
 {
     public partial class AnimalForm : Form
     {
-        Animals animal = new Animals();
+        InterfaceAnimalFactory factory;
+        static string filePath = "D:\\HK2-S3\\Design Patterns\\Animal\\Image\\";
         public AnimalForm()
         {
             InitializeComponent();
@@ -29,80 +31,50 @@ namespace Animal
             cbanimal.Items.Add("Mouse");
         }
 
-        private void picbox_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                OpenFileDialog openFileDialog1 = new OpenFileDialog();
-
-                openFileDialog1.Filter = "Image files (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png";
-                openFileDialog1.RestoreDirectory = true;
-
-                if (openFileDialog1.ShowDialog() == DialogResult.OK)
-                {
-                    // Set the image of the picture box to the selected image
-                    picbox.Image = Image.FromFile(openFileDialog1.FileName);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        bool verif()
-        {
-            if ((tbname.Text.Trim() == "")
-                || (tbinfo_ability.Text.Trim() == "")
-                || (tbinfo_food.Text.Trim() == "")
-                || (picbox.Image == null))
-            {
-                return false;
-            }
-            else return true;
-        }
-
-
         private void btcreate_Click(object sender, EventArgs e)
         {
             try
             {
-                int id;
-                if(cbanimal.Text.Trim() == "Cat"){
-                    id = 0;
-                }
-                else if (cbanimal.Text.Trim() == "Dog")
+                if (cbanimal.Text != "")
                 {
-                    id = 1;
-                }
-                else if (cbanimal.Text.Trim() == "Pig")
-                {
-                    id = 2;
-                }
-                else
-                {
-                    id = 3;
-                }
-
-                string name = tbname.Text;
-                string ability = tbinfo_ability.Text;
-                string food = tbinfo_food.Text;
-                MemoryStream picture = new MemoryStream();
-                picbox.Image.Save(picture, picbox.Image.RawFormat);
-                if (verif())
-                {
-                    if (animal.addAnimal(id, name, ability, food, picture))
+                    string animal = cbanimal.Text.ToString().ToLower().Trim();
+                    int type;
+                    if (!animal.Equals("cat") && !animal.Equals("dog") && !animal.Equals("pig") && !animal.Equals("mouse"))
                     {
-                        MessageBox.Show("New Animal Has Been Created", "Create Animal", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("This animal has not been created!", "Create Animal", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                     {
-                        MessageBox.Show("Error", "Create Animal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        type = cbanimal.SelectedIndex;
+                        if (cbanimal.Equals("cat") && type == -1 /* Error*/)
+                        {
+                            type = 0;
+                        }
+                        else if (animal.Equals("dog") && type == -1)
+                        {
+                            type = 1;
+                        }
+                        else if (animal.Equals("pig") && type == -1)
+                        {
+                            type = 2;
+                        }
+                        else if (animal.Equals("mouse") && type == -1)
+                        {
+                            type = 3;
+                        }
+                        factory = new ChosenAnimalCreation(type);
+                        lbname.Visible = true;
+                        lbname.Text = factory.createAnimals().getName();
+                        lbinfo_name.Text = lbname.Text;
+                        lbinfo_ability.Text = factory.createAnimals().getAbility();
+                        lbinfo_food.Text = factory.createAnimals().getFood();
+                        picbox.Image = Image.FromFile(filePath + factory.createAnimals().getImage());
+                        pninfo.Visible = true;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Empty fields", "Create Animal", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Empty Field!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
@@ -110,29 +82,6 @@ namespace Animal
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void tbname_TextChanged(object sender, EventArgs e)
-        {
-            if (tbname.Text.Trim() == "")
-            {
-                tbinfo_name.Text = "";
-            }
-            else
-            {
-                string name = tbname.Text;
-                tbinfo_name.Text = tbname.Text.ToString();
-                //if (name == animal.getAnimals(name).Rows[0]["name"].ToString())
-                //{
-                //    tbinfo_ability.Text = animal.getAnimals(name).Rows[0]["ability"].ToString();
-                //    tbinfo_food.Text = animal.getAnimals(name).Rows[0]["food"].ToString();
-                //    byte[] pic;
-                //    pic = (byte[])animal.getAnimals(name).Rows[0]["image"];
-                //    MemoryStream picture = new MemoryStream(pic);
-                //    picbox.Image = Image.FromStream(picture);
-                //}
-            }
-        }
-
         private void btclose_Click(object sender, EventArgs e)
         {
             this.Close();

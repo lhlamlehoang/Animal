@@ -52,8 +52,13 @@
     <Compile Include="AnimalForm.Designer.cs">
       <DependentUpon>AnimalForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Animals.cs" />
-    <Compile Include="MY_DB.cs" />
+    <Compile Include="Animal\Cat.cs" />
+    <Compile Include="Animal\Dog.cs" />
+    <Compile Include="Animal\IAnimals.cs" />
+    <Compile Include="Animal\Mouse.cs" />
+    <Compile Include="Animal\Pig.cs" />
+    <Compile Include="Concrete\ChosenAnimalCreation.cs" />
+    <Compile Include="Concrete\InterfaceAnimalFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AnimalForm.resx">

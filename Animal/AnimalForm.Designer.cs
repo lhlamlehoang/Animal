@@ -31,20 +31,18 @@
             this.lbanimal = new System.Windows.Forms.Label();
             this.lbname = new System.Windows.Forms.Label();
             this.cbanimal = new System.Windows.Forms.ComboBox();
-            this.tbname = new System.Windows.Forms.TextBox();
             this.btcreate = new System.Windows.Forms.Button();
             this.btclose = new System.Windows.Forms.Button();
             this.pnimage = new System.Windows.Forms.Panel();
             this.picbox = new System.Windows.Forms.PictureBox();
-            this.lbimage = new System.Windows.Forms.Label();
             this.pninfo = new System.Windows.Forms.Panel();
-            this.tbinfo_food = new System.Windows.Forms.TextBox();
-            this.tbinfo_ability = new System.Windows.Forms.TextBox();
-            this.tbinfo_name = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbinfo_food = new System.Windows.Forms.Label();
+            this.lbinfo_ability = new System.Windows.Forms.Label();
+            this.lbinfo_name = new System.Windows.Forms.Label();
             this.lbinfo = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.pnimage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picbox)).BeginInit();
             this.pninfo.SuspendLayout();
@@ -67,6 +65,7 @@
             this.lbname.Size = new System.Drawing.Size(44, 16);
             this.lbname.TabIndex = 1;
             this.lbname.Text = "Name";
+            this.lbname.Visible = false;
             // 
             // cbanimal
             // 
@@ -75,14 +74,6 @@
             this.cbanimal.Name = "cbanimal";
             this.cbanimal.Size = new System.Drawing.Size(121, 24);
             this.cbanimal.TabIndex = 2;
-            // 
-            // tbname
-            // 
-            this.tbname.Location = new System.Drawing.Point(111, 76);
-            this.tbname.Name = "tbname";
-            this.tbname.Size = new System.Drawing.Size(121, 22);
-            this.tbname.TabIndex = 3;
-            this.tbname.TextChanged += new System.EventHandler(this.tbname_TextChanged);
             // 
             // btcreate
             // 
@@ -107,7 +98,6 @@
             // pnimage
             // 
             this.pnimage.Controls.Add(this.picbox);
-            this.pnimage.Controls.Add(this.lbimage);
             this.pnimage.Location = new System.Drawing.Point(475, -3);
             this.pnimage.Name = "pnimage";
             this.pnimage.Size = new System.Drawing.Size(324, 261);
@@ -123,78 +113,48 @@
             this.picbox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picbox.TabIndex = 1;
             this.picbox.TabStop = false;
-            this.picbox.Click += new System.EventHandler(this.picbox_Click);
-            // 
-            // lbimage
-            // 
-            this.lbimage.AutoSize = true;
-            this.lbimage.Location = new System.Drawing.Point(20, 22);
-            this.lbimage.Name = "lbimage";
-            this.lbimage.Size = new System.Drawing.Size(45, 16);
-            this.lbimage.TabIndex = 0;
-            this.lbimage.Text = "Image";
             // 
             // pninfo
             // 
-            this.pninfo.Controls.Add(this.tbinfo_food);
-            this.pninfo.Controls.Add(this.tbinfo_ability);
-            this.pninfo.Controls.Add(this.tbinfo_name);
             this.pninfo.Controls.Add(this.label3);
             this.pninfo.Controls.Add(this.label2);
             this.pninfo.Controls.Add(this.label1);
+            this.pninfo.Controls.Add(this.lbinfo_food);
+            this.pninfo.Controls.Add(this.lbinfo_ability);
+            this.pninfo.Controls.Add(this.lbinfo_name);
             this.pninfo.Controls.Add(this.lbinfo);
             this.pninfo.Location = new System.Drawing.Point(475, 255);
             this.pninfo.Name = "pninfo";
             this.pninfo.Size = new System.Drawing.Size(324, 265);
             this.pninfo.TabIndex = 7;
+            this.pninfo.Visible = false;
             // 
-            // tbinfo_food
+            // lbinfo_food
             // 
-            this.tbinfo_food.Location = new System.Drawing.Point(147, 190);
-            this.tbinfo_food.Name = "tbinfo_food";
-            this.tbinfo_food.Size = new System.Drawing.Size(118, 22);
-            this.tbinfo_food.TabIndex = 6;
+            this.lbinfo_food.AutoSize = true;
+            this.lbinfo_food.Location = new System.Drawing.Point(176, 200);
+            this.lbinfo_food.Name = "lbinfo_food";
+            this.lbinfo_food.Size = new System.Drawing.Size(49, 16);
+            this.lbinfo_food.TabIndex = 3;
+            this.lbinfo_food.Text = "- Food:";
             // 
-            // tbinfo_ability
+            // lbinfo_ability
             // 
-            this.tbinfo_ability.Location = new System.Drawing.Point(147, 138);
-            this.tbinfo_ability.Name = "tbinfo_ability";
-            this.tbinfo_ability.Size = new System.Drawing.Size(118, 22);
-            this.tbinfo_ability.TabIndex = 5;
+            this.lbinfo_ability.AutoSize = true;
+            this.lbinfo_ability.Location = new System.Drawing.Point(172, 148);
+            this.lbinfo_ability.Name = "lbinfo_ability";
+            this.lbinfo_ability.Size = new System.Drawing.Size(53, 16);
+            this.lbinfo_ability.TabIndex = 2;
+            this.lbinfo_ability.Text = "- Ability:";
             // 
-            // tbinfo_name
+            // lbinfo_name
             // 
-            this.tbinfo_name.Location = new System.Drawing.Point(147, 83);
-            this.tbinfo_name.Name = "tbinfo_name";
-            this.tbinfo_name.Size = new System.Drawing.Size(118, 22);
-            this.tbinfo_name.TabIndex = 4;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(37, 196);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 16);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "- Food:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(37, 138);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 16);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "- Ability:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(37, 83);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 16);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "- Name:";
+            this.lbinfo_name.AutoSize = true;
+            this.lbinfo_name.Location = new System.Drawing.Point(171, 96);
+            this.lbinfo_name.Name = "lbinfo_name";
+            this.lbinfo_name.Size = new System.Drawing.Size(54, 16);
+            this.lbinfo_name.TabIndex = 1;
+            this.lbinfo_name.Text = "- Name:";
             // 
             // lbinfo
             // 
@@ -205,6 +165,33 @@
             this.lbinfo.TabIndex = 0;
             this.lbinfo.Text = "Info";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(46, 96);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(47, 16);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Name:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(46, 148);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(46, 16);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Ability:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(46, 200);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(42, 16);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Food:";
+            // 
             // AnimalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -214,7 +201,6 @@
             this.Controls.Add(this.pnimage);
             this.Controls.Add(this.btclose);
             this.Controls.Add(this.btcreate);
-            this.Controls.Add(this.tbname);
             this.Controls.Add(this.cbanimal);
             this.Controls.Add(this.lbname);
             this.Controls.Add(this.lbanimal);
@@ -222,7 +208,6 @@
             this.Text = "Animal";
             this.Load += new System.EventHandler(this.AnimalForm_Load);
             this.pnimage.ResumeLayout(false);
-            this.pnimage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picbox)).EndInit();
             this.pninfo.ResumeLayout(false);
             this.pninfo.PerformLayout();
@@ -236,20 +221,18 @@
         private System.Windows.Forms.Label lbanimal;
         private System.Windows.Forms.Label lbname;
         private System.Windows.Forms.ComboBox cbanimal;
-        private System.Windows.Forms.TextBox tbname;
         private System.Windows.Forms.Button btcreate;
         private System.Windows.Forms.Button btclose;
         private System.Windows.Forms.Panel pnimage;
         private System.Windows.Forms.PictureBox picbox;
-        private System.Windows.Forms.Label lbimage;
         private System.Windows.Forms.Panel pninfo;
+        private System.Windows.Forms.Label lbinfo_food;
+        private System.Windows.Forms.Label lbinfo_ability;
+        private System.Windows.Forms.Label lbinfo_name;
+        private System.Windows.Forms.Label lbinfo;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lbinfo;
-        private System.Windows.Forms.TextBox tbinfo_food;
-        private System.Windows.Forms.TextBox tbinfo_ability;
-        private System.Windows.Forms.TextBox tbinfo_name;
     }
 }
 
